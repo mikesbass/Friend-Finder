@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FriendFinder</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+</head>
+
+	<body>
+
+		<div class="container ">
+			<div class="jumbotron">
+				<h1 class=""><i class="fa fa-facebook-square" aria-hidden="true"></i> Friend Finder</h1>
+				<hr>
+				<h2 class="">Here's a look at all users. </h2>
+				<br>
+			</div>
+
+			<div class="container users">
+			</div>
+
+
+		    <footer class="footer">
+		      <div class="container">
+			        <p><a href="http://localhost:3010/">Back to Home</a> 
+		      </div>
+		    </footer>
+
+		</div>
+
+		<script>
+		  var currentURL = window.location.origin;
+		  $.post(currentURL + "/users", function(data){
+		    console.log('This is data: ', data);
+				// debugger
+				for(i=0;i<1;i++){
+					// debugger;
+					$('.users').append('<div class="container" id="user'+i+'">').append('<div class="row ">').append('<div class="col-sm-6 col-md-4">').append('<div class="thumbnail">');
+					$('.thumbnail').append('<img src="'+data[i].photo+'" alt="'+data[i].name+'">')
+					$('.thumbnail').append('<h2>'+data[i].name+'</h2>');
+					$('.thumbnail').append('<h4>Scores</h4>');
+					$('.thumbnail').append('<p>'+data[i].scores.replace(/,/g, ' ')+'</p>').append('</div>').append('</div>').append('</div>');
+				}
+		  });
+		</script>>
+	</body>
+</html>
